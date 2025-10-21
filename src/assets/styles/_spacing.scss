@@ -1,0 +1,11 @@
+$spacings: 2, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 160;
+
+@for $i from 1 through length($spacings) {
+    $val: nth($spacings, $i);
+    $num: if($i < 10, "0#{$i}", "#{$i}");
+    
+    .spacing-#{$num} {
+        height: #{$val}px;
+        width: #{$val}px;
+    }
+}
