@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import UWCLoader from "../components/UWCLoader";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
@@ -14,7 +15,7 @@ const router = createBrowserRouter(
             path="/"
             key="login-page"
             element={
-                <Suspense fallback={"Loading..."}>
+                <Suspense fallback={<UWCLoader glassy kind="primary" />}>
                     <LoginPage />
                 </Suspense>
             }
@@ -23,7 +24,7 @@ const router = createBrowserRouter(
             path="/dashboard"
             key="dashboard-page"
             element={
-                <Suspense fallback={"Loading..."}>
+                <Suspense fallback={<UWCLoader glassy kind="primary" />}>
                     <DashboardPage />
                 </Suspense>
             }
