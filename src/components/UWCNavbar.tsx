@@ -96,16 +96,16 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <div className="action-btns">
                     {!showMenu ? (
                         <button className="menu-btn" aria-label="Menu" onClick={handleShowMenu}>
-                            <Menu size={'22'} /> <span>Menu</span>
+                            <Menu size={'20'} /> <span>Menu</span>
                         </button>
                     ) : (
                         <button className='close-btn' aria-label="Close Menu" onClick={() => setShowMenu(false)}>
-                            <Close size={'22'} /> <span>Menu</span>
+                            <Close size={'20'} /> <span>Menu</span>
                         </button>
                     )}
                     {!showMenu && (
                         <button className="search-btn" aria-label="Search" onClick={handleSearchClick}>
-                            <Search size={'22'} /> <span>Search</span>
+                            <Search size={'20'} /> <span>Search</span>
                         </button>
                     )}
                 </div>

@@ -31,10 +31,10 @@ export const UWCAvatar: React.FC<UWCAvatarProps> = ({
 }) => {
   // Avatar base sizes
     const sizeClasses: Record<AvatarSizes, string> = {
-        sm: "w-8 h-8",
-        md: "w-12 h-12",
-        lg: "w-16 h-16",
-        xl: "w-24 h-24",
+        sm: "small-size",
+        md: "medium-size",
+        lg: "large-size",
+        xl: "xlarge-size",
     };
 
   // Auto-scaling font sizes for initials
@@ -69,10 +69,10 @@ export const UWCAvatar: React.FC<UWCAvatarProps> = ({
 
   // Positioning of status dot
     const statusPositionClasses: Record<StatusPositions, string> = {
-        "top-left": "top-0 left-0",
-        "top-right": "top-0 right-0",
-        "bottom-left": "bottom-0 left-0",
-        "bottom-right": "bottom-0 right-0",
+        "top-left": "top-1 left-1",
+        "top-right": "top-1 right-1",
+        "bottom-left": "bottom-1 left-1",
+        "bottom-right": "bottom-1 right-1",
     };
 
   // Status dot auto-size
@@ -99,20 +99,13 @@ export const UWCAvatar: React.FC<UWCAvatarProps> = ({
 
     const initials = name ? getInitials(name) : "";
 
-    const containerStyle = {
-        borderWidth: "2px",
-        borderStyle: "solid",
-        borderColor: "rgba(0, 0, 0, 0.1)",
-    };
-
     return (
         <div
-            className={`relative d-flex align-items-center justify-content-center overflow-hidden bg-gray-200 text-gray-600 
+            className={`uwc-avatar 
                 ${sizeClasses[size]} 
                 ${shapeClasses[shape]} 
                 ${className} ${onClick ? "cursor-pointer" : ""}`}
             onClick={onClick}
-            style={containerStyle}
         >
         {imageUrl ? (
             <img

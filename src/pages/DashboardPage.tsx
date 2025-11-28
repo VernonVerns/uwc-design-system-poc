@@ -1,4 +1,4 @@
-import { NotificationNew,  UserAvatar } from '@carbon/icons-react'
+import { LogoFacebook, LogoInstagram, LogoLinkedin, LogoX, NotificationNew,  Settings,  UserAvatar } from '@carbon/icons-react'
 import { 
 	DataTable,
 	Table,
@@ -33,6 +33,10 @@ import { UWCBanner } from '../components/UWCBanner'
 import slideVideo from '../assets/campus.mp4'
 import slideImage from '../assets/gradutionImg.jpg'
 import slideImage2 from '../assets/image2.jpg'
+import NavigationBar2 from '../components/NavigationBar'
+import { UWCFooter } from '../components/UWCFooter'
+
+import UWCLogo from '../assets//mobile-logo.png'
 
 interface Application {
   application_id: string;
@@ -53,6 +57,29 @@ const statuses = [
 	{label: "Accepted", id: 'accepted'},
 	{label: "Unsuccessful", id: 'unsuccessful'},
 	{label: "Incomplete", id: 'incomplete'},
+];
+
+const footerSections = [
+  {
+	title: "Quick Links",
+	links: [
+	  { Label: "Student Portal", path: "#" },
+	  { Label: "UWC Connect (Intranet)", path: "#" },
+	  { Label: "iKamva", path: "#" },
+	  { Label: "Online Applications", path: "#" },
+	  { Label: "UWC Careers", path: "#" }
+	]
+  },
+  {
+	title: "Discover UWC",
+	links: [
+	  { Label: "Support UWC", path: "#" },
+	  { Label: "Alumni", path: "#" },
+	  { Label: "Research and Innovation", path: "#" },
+	  { Label: "Learning and Teaching", path: "#" },
+	  { Label: "Community Engagement", path: "#" }
+	]
+  }
 ];
 
 const headers: { key: keyof Application; header: string }[] = [
@@ -182,10 +209,10 @@ const DashboardPage: React.FC = () => {
 	
 	return (
 		<div id='dashboard_page'>
-			{/* <UWCNavbar 
+			{/* <NavigationBar2 
 				borderBottom
 				backgroundColor
-				brand={<img src="https://uwc-za.b-cdn.net/files/images/UWC_logo_full-colour-04.svg" style={{width: "160px"}} alt="UWC Logo" />}
+				brand={<img src="https://uwc-za.b-cdn.net/files/images/UWC_logo_full-colour-04.svg" style={{width: "140px"}} alt="UWC Logo" />}
 				links={[
 					{label: "Dashboard", path: '/dashboard'},
 					{label: "Applications", path: '/applications'},
@@ -193,20 +220,21 @@ const DashboardPage: React.FC = () => {
 				]}
 				rightIcons={[
 					{icon: <NotificationNew size={"20"} />, onClick: () => {}},
-					{icon: <UserAvatar size={"20"} />, href: "/account"}
+					{icon: <Settings size={"20"} />, href: "/account"}
 				]}
 			/> */}
 
-			{/* <UWCLoader glassy kind='primary' /> */}
-
+			{/* <UWCLoader glassy kind='secondary' /> */}
+			{/* <div className='spacing-10'></div> */}
 			<NavigationBar 
+				borderBottom
 				backgroundColor
 				links={[
 					{label: "Apply", path: '/'},
 					{label: "Visit", path: '/visit'},
 					{label: "Majors & Minors", path: '/majors-minors'},
 				]}
-				brand={<img src="https://uwc-za.b-cdn.net/files/images/UWC-2025-trilingual-landscape.svg" alt="UWC Logo" />}
+				brand={<img src={UWCLogo} alt="UWC Logo" style={{width: '40px'}} />}
 				search={{
 					data: [
 						// make the discription to be 2 lines max
@@ -314,9 +342,9 @@ const DashboardPage: React.FC = () => {
 					{label: 'Vacancies', path: '/vacancies'},
 				]}
 			/>
-
+			<div className='spacing-10'></div>
 			<div className='uwc-banner'>
-				<h3 style={{marginBottom: '20px'}}>UWC Banner/Hero</h3>
+				<h3 style={{marginBottom: '20px', paddingLeft: '20px'}}>UWC Banner/Hero (Full)</h3>
 				<UWCBanner
 					height='full'
 					transition='fade'
@@ -361,7 +389,7 @@ const DashboardPage: React.FC = () => {
 					]}
 				/>
 				<div className='spacing-10'></div>
-				<h3 style={{marginBottom: '20px'}}>UWC Banner/Hero</h3>
+				<h3 style={{marginBottom: '20px', paddingLeft: '20px'}}>UWC Banner/Hero (Half)</h3>
 				<UWCBanner
 					height='half'
 					transition='fade'
@@ -371,21 +399,19 @@ const DashboardPage: React.FC = () => {
 					slides={[
 						{
 							mediaType: "image",
-							imageSrc: slideImage2,
+							imageSrc: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&w=2000",
 							imageAlt: "Students graduating",
 
-							title: "Celebrate Achievement at UWC Graduation",
-							action: { label: "View Details", url: "/graduation" },
-
-							indicatorTitle: "Graduation",
-							indicatorSubtitle: "Honoring Success and New Beginnings.",
+							// title should about computer science course
+							title: "Launch Your Tech Career with UWC's Computer Science Program",
+							action: { label: "Apply Now", url: "/apply?course=computer-science" },
 						},
 					]}
 				/>
 			</div>
 
 			<div className='container'>
-				<div className="stats-container" >
+				<div className="stats-container d-flex flex-column" >
 					<UWCScoreCard 
 						label='All Applications'
 						value={applications.length}
@@ -570,7 +596,7 @@ const DashboardPage: React.FC = () => {
 				<div className='spacing-10'></div>
 				<div className="uwc-cards">
 					<h3 style={{marginBottom: '20px'}}>UWC Cards - With Images</h3>
-					<div className="uwc-cards-container d-flex flex-row gap-20">
+					<div className="uwc-cards-container d-flex flex-column gap-20">
 						<UWCCard
 							image="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&w=800"
 							eyebrow="Design"
@@ -619,7 +645,7 @@ const DashboardPage: React.FC = () => {
 					</div>
 					<div className='spacing-10'></div>
 					<h4 style={{marginBottom: '20px'}}>UWC Cards - Without Images</h4>
-					<div className="uwc-cards-container d-flex flex-row gap-20">
+					<div className="uwc-cards-container d-flex flex-column gap-20">
 						<UWCCard
 							// image="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&w=800"
 							eyebrow="Design"
@@ -655,7 +681,7 @@ const DashboardPage: React.FC = () => {
 				<div className='spacing-10'></div>
 				<div className='toast-btn-container'>
 					<h3 style={{marginBottom: '20px'}}>Toast/Snackbar</h3>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column gap-20'>
 						<UWCButton onClick={() => showToast({
 							title: 'Saved',
 							description: 'Your changes were saved successfully.',
@@ -694,7 +720,7 @@ const DashboardPage: React.FC = () => {
 				<div className='spacing-10'></div>
 				<div className="uwc-modal">
 					<h3 style={{marginBottom: '20px'}}>UWC Modals</h3>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column gap-20'>
 						<UWCButton onClick={() => {setModal1Open(true)}}>Open Modal 1</UWCButton>
 						<UWCButton onClick={() => {setModal2Open(true)}}>Open Modal 2</UWCButton>
 						<UWCButton onClick={() => {setModal3Open(true)}} kind='secondary'>Open Modal 3</UWCButton>
@@ -830,7 +856,7 @@ const DashboardPage: React.FC = () => {
 				<div className='spacing-10'></div>
 				<div className='uwc-password-input'>
 					<h3 style={{marginBottom: '20px'}}>UWC Password Input</h3>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column gap-20'>
 						<UWCPasswordInput
 							id='password1'
 							labelText='Password'
@@ -857,7 +883,7 @@ const DashboardPage: React.FC = () => {
 				<div className='spacing-10'></div>
 				<div className='uwc-textarea'>
 					<h3 style={{marginBottom: '20px'}}>UWC Textarea</h3>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column gap-20'>
 						<UWCTextArea
 							id="feedback"
 							labelText="Your Feedback"
@@ -968,9 +994,9 @@ const DashboardPage: React.FC = () => {
 					</div>
 				</div>
 				<div className='spacing-10'></div>
-				<div className='uwc-avatar'>
+				<div className='uwc-avatars'>
 					<h3 style={{marginBottom: '20px'}}>UWC Avatar</h3>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column align-items-start gap-20'>
 						<UWCAvatar
 							size='sm'
 							shape='square'
@@ -1014,7 +1040,7 @@ const DashboardPage: React.FC = () => {
 					</div>
 					<div className='spacing-10'></div>
 					<h4 style={{marginBottom: '20px'}}>Avatar with initials</h4>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column align-items-start gap-20'>
 						<UWCAvatar
 							size='sm'
 							shape='square'
@@ -1058,7 +1084,7 @@ const DashboardPage: React.FC = () => {
 					</div>
 					<div className='spacing-10'></div>
 					<h4 style={{marginBottom: '20px'}}>Default Avatar (No image or initial)</h4>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column align-items-start gap-20'>
 						<UWCAvatar
 							size='sm'
 							shape='square'
@@ -1094,7 +1120,7 @@ const DashboardPage: React.FC = () => {
 					</div>
 					<div className='spacing-10'></div>
 					<h4 style={{marginBottom: '20px'}}>Avatar with Status</h4>
-					<div className='d-flex flex-row gap-20'>
+					<div className='d-flex flex-column align-items-start gap-20'>
 						<UWCAvatar
 							size='lg'
 							shape='circle'
@@ -1164,6 +1190,21 @@ const DashboardPage: React.FC = () => {
 					</div>
 				</div>
 			</div>
+			<div className='spacing-10'></div>
+			<h3 style={{marginBottom: '20px'}}>UWC Footer</h3>
+			<UWCFooter 
+				logo={<img src="https://uwc-za.b-cdn.net/files/images/UWC-2025-trilingual-landscape-white.svg" alt="UWC Logo" />}
+				variant='secondary'
+				sections={footerSections}
+				socials={
+					[
+						{icon: <LogoFacebook size={24} />, link: "facebook.com", arialLabel: 'Facebook Social' },
+						{icon: <LogoInstagram size={24} />, link: "instagram.com", arialLabel: 'Instagram Social' },
+						{icon: <LogoX size={24} />, link: "twitter.com", arialLabel: 'Twitter Social' },
+						{icon: <LogoLinkedin size={24} />, link: "linkedin.com", arialLabel: 'Linkedin Social' },
+					]
+				}
+			/>
 		</div>
 	)
 }

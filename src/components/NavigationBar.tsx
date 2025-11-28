@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { UWCAvatar } from "./UWCAvatar";
 
 type NavLinkItem = {
     label: string;
@@ -8,19 +9,20 @@ type NavLinkItem = {
 
 type RightIconItem = {
   icon: React.ReactNode;
-  href?: string; // optional link
-  onClick?: () => void; // optional click action
-  ariaLabel?: string; // accessibility
+  href?: string;
+  onClick?: () => void;
+  ariaLabel?: string;
 };
 
 interface NavigationBarProps {
-    fixed?: boolean; // Stick to top
-    borderBottom?: boolean; // Show bottom border
-    brand?: React.ReactNode; // Logo, text, etc.
-    links: NavLinkItem[]; // Menu links
-    rightIcons?: RightIconItem[]; // Buttons/icons on the right
-    className?: string; // Custom class override
+    fixed?: boolean;
+    borderBottom?: boolean;
+    brand?: React.ReactNode;
+    links: NavLinkItem[];
+    rightIcons?: RightIconItem[];
+    className?: string;
     backgroundColor?: boolean;
+    userAccount?: boolean
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
@@ -31,6 +33,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     rightIcons = [],
     className = "",
     backgroundColor = false,
+    userAccount = true
 }) => {
     return (
         <div
@@ -59,31 +62,47 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 ))}
             </ul>
 
-            {rightIcons.length > 0 && (
-                <div className="icon-btns">
-                    {rightIcons.map((item, idx) =>
-                        item.href ? (
-                        <a
-                            key={idx}
-                            href={item.href}
-                            className="icon-item"
-                            aria-label={item.ariaLabel}
-                        >
-                            {item.icon}
-                        </a>
-                        ) : (
-                        <button
-                            key={idx}
-                            onClick={item.onClick}
-                            className="icon-item"
-                            aria-label={item.ariaLabel}
-                        >
-                            {item.icon}
-                        </button>
-                        )
-                    )}
-                </div>
-            )}
+            <div className="icon-side">
+                {rightIcons.length > 0 && (
+                    <div className="icon-btns">
+                        {rightIcons.map((item, idx) =>
+                            item.href ? (
+                            <a
+                                key={idx}
+                                href={item.href}
+                                className="icon-item"
+                                aria-label={item.ariaLabel}
+                            >
+                                {item.icon}
+                            </a>
+                            ) : (
+                            <button
+                                key={idx}
+                                onClick={item.onClick}
+                                className="icon-item"
+                                aria-label={item.ariaLabel}
+                            >
+                                {item.icon}
+                            </button>
+                            )
+                        )}
+                    </div>
+                )}
+                {userAccount && (
+                    <>
+                        <UWCAvatar 
+                            shape="circle"
+                            size="md"
+                            onClick={() => {}}
+                        />
+                        {/* <div className="dropdown">
+                            <ul className="dropdown-menu">
+                                {}
+                            </ul>
+                        </div> */}
+                    </>
+                )}
+            </div>
         </div>
     );
 };
