@@ -161,7 +161,7 @@ export const UWCBanner: React.FC<UWCBannerProps> = ({
                 )}
             </div>
             <div className="banner-controls">
-                {showControls && (
+                {showControls && height !== 'half' && (
                     <div className="nav-btn-container">
                         <button type="button" className="nav-btn btn-next" onClick={() => goToSlide(current - 1)}>
                             <ArrowLeft size={20} />
@@ -171,7 +171,7 @@ export const UWCBanner: React.FC<UWCBannerProps> = ({
                         </button>
                     </div>
                 )}
-                {showIndicators && (
+                {showIndicators && height !== 'half' && (
                     <div className="indicator-container">
                         {slides.map((_, index) => (
                             <div  className="indicator-item" onClick={() => goToSlide(index)} key={index}>

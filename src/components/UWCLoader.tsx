@@ -1,19 +1,17 @@
-// a reusable component for loading state
 import React from 'react';
-import UWCWhiteLogo from '../assets/UWC-2025-trilingual-vertical-white.png';
-import UWCDarkLogo from '../assets/UWC-2025-trilingual-vertical-alpha.png'
 
 interface UWCLoaderProps {
     kind: "primary" | "secondary";
     glassy: boolean;
-
+    tagline?: string;
 }
 
 const UWCLoader: React.FC<UWCLoaderProps> = ({
     kind = "secondary",
     glassy = true,
+    tagline = 'A Place of Quality'
 }) => {
-
+    const letters = ['U', 'W', 'C'];
     const kindClasses: Record<"primary" | "secondary", string> = {
 		primary: "light-color",
 		secondary: "dark-color",
@@ -25,13 +23,23 @@ const UWCLoader: React.FC<UWCLoaderProps> = ({
                 ${glassy ? "glassy-bg" : ""}
             `}
         >
-            <div className="loading-circle">
-                {kind !== "primary" ? <img src={UWCWhiteLogo} alt="UWC Logo" className="uwc-spinner-logo" /> : <img src={UWCDarkLogo} alt='UWC Dark Logo' className="uwc-spinner-logo" />}
-                <div className='spinner'>
-                    <div className="spinner-line"></div>
-                </div>
+            <div className="uwc-letters">
+                {letters.map((letter, index) => (
+                <span 
+                    key={index} 
+                    className="uwc-letter"
+                    style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                    {letter}
+                </span>
+                ))}
             </div>
-            {/* <p>Loading...</p> */}
+            <div className="uwc-dots">
+                <span className="uwc-dot"></span>
+                <span className="uwc-dot"></span>
+                <span className="uwc-dot"></span>
+            </div>
+            <p className="uwc-tagline">{tagline}</p>
         </div>
     );
 }

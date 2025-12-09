@@ -224,7 +224,7 @@ const DashboardPage: React.FC = () => {
 				]}
 			/> */}
 
-			{/* <UWCLoader glassy kind='secondary' /> */}
+			{/* <UWCLoader glassy kind='primary' /> */}
 			{/* <div className='spacing-10'></div> */}
 			<NavigationBar 
 				borderBottom
@@ -237,7 +237,6 @@ const DashboardPage: React.FC = () => {
 				brand={<img src={UWCLogo} alt="UWC Logo" style={{width: '40px'}} />}
 				search={{
 					data: [
-						// make the discription to be 2 lines max
 						{ 
 							title: "Admissions", 
 							desc: "Explore comprehensive admission processes, application requirements, and deadlines. Find guidance on program selection and submission procedures for both undergraduate and postgraduate studies.",
